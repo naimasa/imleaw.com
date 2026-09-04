@@ -73,3 +73,15 @@
 - **Findings / Issues**: Claude Code のセッション上限到達に伴い、Codex CLI および Antigravity による自前監査・修正にフォールバックして全テストを完走（`local-only` 規約遵守）
 - **Next**: @devops によるローカル起動確認およびデプロイ設定検証
 
+## [2026-09-05 08:50:00] @devops — ローカルプレビュー起動と全エンドポイント検証
+- **Status**: ✅ Done
+- **Input**: `dist/` ビルド成果物および Astro サーバー設定
+- **Actions**:
+  - `npx astro preview --port 4321 --host` をバックグラウンド起動
+  - トップ (`/`)、ブログ一覧 (`/blogs/`)、お問い合わせ (`/contacts/`)、レッスン (`/about-the-lesson/`)、コース (`/basic-course/`)、Instagram (`/instagram/`)、プロフィール (`/who-am-i/`)、検索 (`/search/`)、カテゴリ (`/category/.../`)、記事詳細 (`/2024/09/10/.../`)、サイトマップ (`/sitemap-index.xml`)、robots.txt、Decap CMS 管理画面 (`/admin/`) をエンドポイント自動テストで 200 応答確認
+- **Changed Files**: なし
+- **CLI Calls**: なし
+- **Cost**: Claude=0 / Codex=0 / Gemini自前=1
+- **Findings / Issues**: すべてのエンドポイントがエラーなく正常に応答
+- **Next**: Step 5 最終レポート生成（`report.md`, `index.md`, `usage.md`）
+
