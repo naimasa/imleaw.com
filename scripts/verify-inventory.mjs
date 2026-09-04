@@ -12,16 +12,18 @@ const [inventory, posts, pages, categories, media] = await Promise.all([
   load('data/wp-export/media.json'),
 ]);
 
-const expected = { posts: 431, pages: 11, categories: 5, media: 562 };
+// The discovery snapshot includes three media records that were no longer returned
+// by the later export snapshot. Keep both frozen-fixture expectations explicit.
+const expected = { posts: 431, pages: 11, categories: 5, inventoryMedia: 565, exportedMedia: 562 };
 const checks = [
   ['wp-inventory posts', inventory.totalPosts, expected.posts],
   ['wp-inventory pages', inventory.pages?.length, expected.pages],
   ['wp-inventory categories', inventory.categories?.length, expected.categories],
-  ['wp-inventory media', inventory.totalMedia, expected.media],
+  ['wp-inventory media', inventory.totalMedia, expected.inventoryMedia],
   ['wp-export posts', posts.length, expected.posts],
   ['wp-export pages', pages.length, expected.pages],
   ['wp-export categories', categories.length, expected.categories],
-  ['wp-export media', media.length, expected.media],
+  ['wp-export media', media.length, expected.exportedMedia],
 ];
 
 let failed = 0;

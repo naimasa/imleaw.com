@@ -13,6 +13,11 @@
   --color-text: #2f241d; --color-text-muted: #65584e; --color-primary: #743f25;
   --color-primary-hover: #522a18; --color-accent: #98451f; --color-accent-soft: #f1d2ac;
   --color-border: #d9c7b4; --color-focus: #075e72; --color-white: #fff;
+  --color-header-bg: rgb(255 250 242 / .96); --color-hero-overlay: rgb(255 250 242 / .78);
+  --color-hero-overlay-strong: rgb(255 250 242 / .94); --color-hero-shade: rgb(47 36 29 / .12);
+  --color-footer-muted: #eadfd2; --color-category-bread: #8a4b27;
+  --color-category-life: #52623b; --color-category-suzaka: #315f63;
+  --color-category-garden: #5b693c; --color-category-default: #6f655c;
   --shadow-sm: 0 2px 12px rgb(70 43 24 / .08); --shadow-md: 0 16px 42px rgb(70 43 24 / .13);
   --radius-sm: .4rem; --radius-md: .8rem; --radius-lg: 1.5rem; --radius-pill: 999px;
   --container: 72rem; --container-narrow: 46rem; --header-height: 5rem;

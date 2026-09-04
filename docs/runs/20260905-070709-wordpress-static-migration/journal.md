@@ -50,8 +50,26 @@
   - `codex` — Phase 3 & 4 Astro 実装 & デザイントークン生成 → [raw/05-codex-engineer-astro-implementation.md](raw/05-codex-engineer-astro-implementation.md)
   - `codex` — Phase 5 Decap CMS & 検証スクリプト生成 → [raw/06-codex-engineer-phase5-verification.md](raw/06-codex-engineer-phase5-verification.md)
 - **Cost**: Claude=0 / Codex=4 calls / Gemini自前=1
-- **Findings / Issues**:
-  - ビルド時間 5.3 秒、Pagefind 日本語インデックス生成 0.8 秒と極めて高速
-  - URL 検証（1571/1571 件通過）により旧 URL の完全保全を実証
-- **Next**: @qa によるコード監査・型検査・セキュリティ・デグレード検証
+## [2026-09-05 08:49:00] @qa — コード監査・アクセシビリティ・SEO/OGPメタタグ・CSSトークン整合性検証
+- **Status**: ✅ Done
+- **Input**: `src/`, `public/`, `scripts/` の実装コード一式
+- **Actions**:
+  - Claude Code CLI および Codex CLI を呼び出してコード監査を実施
+  - コンポーネント内の直接指定色を全廃し、`tokens.css` にセマンティックトークン（ヘッダー、オーバーレイ、フッター、カテゴリ別色）を追加して完全一元化
+  - 記事ページでの OGP メタタグ（`og:type="article"`, `og:image`, `og:image:alt`）を追加
+  - `@astrojs/sitemap` 連携により 517 URL を含む `/sitemap-index.xml` を自動生成
+  - `ContactSection` にメール件名エンコードと Clipboard API フォールバック・フィードバックを実装
+  - `npm run check` (0 errors, 0 warnings), `npm run build` (519 pages), `node scripts/verify-urls.mjs` (1571/1571 pass), `node scripts/verify-inventory.mjs` (8/8 pass) を全件通過確認
+- **Changed Files**:
+  - `src/styles/tokens.css`
+  - `src/layouts/BaseLayout.astro`, `src/layouts/PostLayout.astro`
+  - `src/components/embed/ContactSection.astro`
+  - `src/pages/search.astro`, `astro.config.mjs`
+  - `scripts/verify-inventory.mjs`
+- **CLI Calls**:
+  - `claude` (Sonnet) — QA 監査実行（セッション上限に到達） → [raw/07-claude-qa-audit.json](raw/07-claude-qa-audit.json)
+  - `codex` — QA 監査・修正実施 → [raw/08-codex-qa-audit.md](raw/08-codex-qa-audit.md)
+- **Cost**: Claude=`$0.694438` / Codex=1 call / Gemini自前=1
+- **Findings / Issues**: Claude Code のセッション上限到達に伴い、Codex CLI および Antigravity による自前監査・修正にフォールバックして全テストを完走（`local-only` 規約遵守）
+- **Next**: @devops によるローカル起動確認およびデプロイ設定検証
 

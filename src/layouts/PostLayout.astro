@@ -9,7 +9,7 @@ const { post } = Astro.props;
 const date = post.data.date.toLocaleDateString('ja-JP', { year:'numeric', month:'long', day:'numeric', timeZone:'Asia/Tokyo' });
 const description = `${post.data.title} — ${date}のイム・レーオのブログ記事です。`;
 ---
-<BaseLayout title={post.data.title} description={description} canonicalPath={post.data.permalink} breadcrumbs={[{label:'Blog',href:'/blogs/'},{label:post.data.title}]}>
+<BaseLayout title={post.data.title} description={description} image={post.data.heroImage?.src} imageAlt={post.data.heroImageAlt || post.data.title} ogType="article" canonicalPath={post.data.permalink} breadcrumbs={[{label:'Blog',href:'/blogs/'},{label:post.data.title}]}>
   <article class="post container container--narrow" data-pagefind-body>
     <header class="post-header"><div class="cluster">{post.data.categories.map((category) => <CategoryBadge slug={category} />)}</div><h1>{post.data.title}</h1><time datetime={post.data.date.toISOString()}>{date}</time></header>
     {post.data.heroImage && <Image class="hero-image" src={post.data.heroImage} alt={post.data.heroImageAlt || post.data.title} widths={[720,960,1280]} sizes="(max-width: 768px) 100vw, 768px" format="webp" loading="eager" />}

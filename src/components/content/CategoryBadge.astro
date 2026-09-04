@@ -2,7 +2,7 @@
 import { siteConfig, type CategorySlug } from '../../config/site.config';
 interface Props { slug: string }
 const { slug } = Astro.props;
-const category = siteConfig.categories[slug as CategorySlug] ?? { name: decodeURIComponent(slug), slug, color: '#6f655c' };
+const category = siteConfig.categories[slug as CategorySlug] ?? { name: decodeURIComponent(slug), slug, color: 'var(--color-category-default)' };
 ---
 <a class="badge" href={`/category/${category.slug}/`} style={`--badge-color:${category.color}`} data-pagefind-filter={`category:${category.name}`}>{category.name}</a>
 <style>.badge{display:inline-flex;padding:var(--space-1) var(--space-3);border:1px solid var(--badge-color);border-radius:var(--radius-pill);color:var(--badge-color);background:var(--color-surface);font-size:var(--font-size-xs);font-weight:700;line-height:1.5;text-decoration:none}.badge:hover{color:var(--color-white);background:var(--badge-color)}</style>
