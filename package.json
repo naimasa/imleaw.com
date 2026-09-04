@@ -1,0 +1,23 @@
+{
+  "name": "imleaw-com",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build && pagefind --site dist && node scripts/build-redirects.mjs",
+    "preview": "astro preview",
+    "check": "astro check",
+    "verify:urls": "node scripts/verify-urls.mjs",
+    "verify:inventory": "node scripts/verify-inventory.mjs"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.0",
+    "@astrojs/rss": "^4.0.19",
+    "astro": "^5.0.0",
+    "pagefind": "^1.0.0",
+    "sharp": "^0.33.0",
+    "turndown": "^7.2.0",
+    "typescript": "^5.0.0"
+  }
+}

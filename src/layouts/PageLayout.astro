@@ -1,0 +1,7 @@
+---
+import BaseLayout from './BaseLayout.astro';
+interface Props { title: string; description?: string }
+const { title, description } = Astro.props;
+---
+<BaseLayout title={title} description={description} breadcrumbs={[{label:title}]}><article class="page container container--narrow" data-pagefind-body><header><p class="eyebrow">Im Leaw</p><h1>{title}</h1></header><div class="prose"><slot /></div></article></BaseLayout>
+<style>.page{padding-block:var(--space-7) var(--space-11)}.page>header{margin-bottom:var(--space-7);text-align:center}.page h1{margin-bottom:0}</style>

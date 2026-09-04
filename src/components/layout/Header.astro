@@ -1,0 +1,26 @@
+---
+import Nav from './Nav.astro';
+import { siteConfig } from '../../config/site.config';
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label={`${siteConfig.title} ホーム`}><span>Im Leaw</span><small>イム・レーオ</small></a>
+    <button class="menu-button" type="button" aria-controls="primary-nav" aria-expanded="false"><span aria-hidden="true">☰</span><span>Menu</span></button>
+    <Nav />
+  </div>
+</header>
+<script is:inline>
+  document.querySelectorAll('.menu-button').forEach((button) => {
+    const nav = document.getElementById(button.getAttribute('aria-controls'));
+    if (!nav) return;
+    const mobile = window.matchMedia('(max-width: 63.99rem)');
+    const sync = () => { nav.hidden = mobile.matches && button.getAttribute('aria-expanded') !== 'true'; };
+    button.addEventListener('click', () => { button.setAttribute('aria-expanded', button.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); sync(); });
+    mobile.addEventListener('change', () => { button.setAttribute('aria-expanded', 'false'); sync(); });
+    sync();
+  });
+</script>
+<style>
+  .site-header{position:sticky;z-index:50;top:0;min-height:var(--header-height);background:rgb(255 250 242 / .96);border-bottom:1px solid var(--color-border);backdrop-filter:blur(10px)}.header-inner{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:var(--header-height);gap:var(--space-5)}.brand{display:flex;align-items:baseline;gap:var(--space-2);color:var(--color-text);font-family:var(--font-display);font-size:var(--font-size-lg);font-weight:700;text-decoration:none}.brand small{font-family:var(--font-sans);font-size:var(--font-size-xs);font-weight:500;letter-spacing:var(--tracking-wide)}.menu-button{display:none;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-surface);color:var(--color-text);font-weight:700}
+  @media(max-width:63.99rem){.menu-button{display:flex}}
+</style>

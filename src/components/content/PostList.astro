@@ -1,0 +1,8 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import PostCard from './PostCard.astro';
+interface Props { posts: CollectionEntry<'posts'>[] }
+const { posts } = Astro.props;
+---
+{posts.length ? <div class="post-grid">{posts.map((post) => <PostCard post={post} />)}</div> : <p class="empty-state surface">該当する記事はありません。</p>}
+<style>.post-grid{display:grid;gap:var(--space-6)}@media(min-width:40rem){.post-grid{grid-template-columns:repeat(2,1fr)}}@media(min-width:64rem){.post-grid{grid-template-columns:repeat(3,1fr)}}</style>

@@ -1,0 +1,61 @@
+backend:
+  name: github
+  repo: naimasa/imleaw.com
+  branch: main
+
+local_backend: true
+publish_mode: editorial_workflow
+media_folder: public/wp-content/uploads
+public_folder: /wp-content/uploads
+
+collections:
+  - name: posts
+    label: 記事
+    label_singular: 記事
+    folder: src/content/posts
+    create: true
+    format: frontmatter
+    extension: md
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{date}}"
+    fields:
+      - { label: タイトル, name: title, widget: string }
+      - label: パーマリンク
+        name: permalink
+        widget: string
+        hint: "先頭と末尾を / にしてください（例: /2026/09/05/my-post/）。公開後は変更しないでください。"
+        pattern: ['^/(?:[^/?#]+/)*$', "先頭と末尾に / が必要です"]
+      - { label: 公開日時, name: date, widget: datetime, format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - label: カテゴリ
+        name: categories
+        widget: select
+        multiple: true
+        min: 1
+        options:
+          - { label: パンについて, value: "%e3%83%91%e3%83%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6" }
+          - { label: 日々の暮らし, value: "%e6%97%a5%e3%80%85%e3%81%ae%e6%9a%ae%e3%82%89%e3%81%97" }
+          - { label: 須坂, value: "%e9%a0%88%e5%9d%82" }
+          - { label: 庭について, value: "%e5%ba%ad%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6" }
+          - { label: 未分類, value: uncategorized }
+      - { label: アイキャッチ画像, name: heroImage, widget: image, required: false }
+      - { label: アイキャッチ画像の説明, name: heroImageAlt, widget: string, required: false, default: "" }
+      - { label: 本文, name: body, widget: markdown }
+
+  - name: pages
+    label: 固定ページ
+    label_singular: 固定ページ
+    folder: src/content/pages
+    create: true
+    format: frontmatter
+    extension: md
+    slug: "{{slug}}"
+    summary: "{{title}} — {{permalink}}"
+    fields:
+      - { label: タイトル, name: title, widget: string }
+      - label: パーマリンク
+        name: permalink
+        widget: string
+        hint: "先頭と末尾を / にしてください。"
+        pattern: ['^/(?:[^/?#]+/)*$', "先頭と末尾に / が必要です"]
+      - { label: 表示順, name: order, widget: number, value_type: int, default: 0 }
+      - { label: 本文, name: body, widget: markdown }

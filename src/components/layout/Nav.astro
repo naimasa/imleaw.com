@@ -1,0 +1,13 @@
+---
+import { siteConfig } from '../../config/site.config';
+const currentPath = Astro.url.pathname;
+---
+<nav id="primary-nav" class="nav" aria-label="メインナビゲーション">
+  <ul>
+    {siteConfig.nav.map((item) => <li><a href={item.href} aria-current={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) ? 'page' : undefined}>{item.label}</a></li>)}
+  </ul>
+</nav>
+<style>
+  .nav ul{display:flex;align-items:center;gap:var(--space-5);margin:0;padding:0;list-style:none}.nav a{color:var(--color-text);font-size:var(--font-size-sm);font-weight:700;text-decoration:none;white-space:nowrap}.nav a:hover,.nav a[aria-current=page]{color:var(--color-primary);text-decoration:underline}.nav a[aria-current=page]{text-decoration-thickness:2px}
+  @media(max-width:63.99rem){.nav{position:absolute;top:100%;left:0;width:100%;padding:var(--space-4) var(--space-5) var(--space-6);background:var(--color-surface);border-bottom:1px solid var(--color-border);box-shadow:var(--shadow-md)}.nav[hidden]{display:none}.nav ul{align-items:stretch;flex-direction:column;gap:0}.nav a{display:block;padding:var(--space-3) 0;font-size:var(--font-size-base)}}
+</style>

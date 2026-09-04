@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InstagramGrid from '../components/embed/InstagramGrid.astro';
+import { siteConfig } from '../config/site.config';
+---
+<BaseLayout title="Instagram" description="イム・レーオのパンと工房の日々をInstagramから。" breadcrumbs={[{label:'Instagram'}]}><section class="section"><div class="container"><header class="page-head"><p class="eyebrow">Follow our days</p><h1>Instagram</h1><p>販売日、焼き上がり、レッスンの風景をお届けします。</p><a class="button" href={siteConfig.store.instagramUrl} target="_blank" rel="noopener">@im_leaw_suzaka をフォロー<span class="visually-hidden">（新しいタブ）</span></a></header><InstagramGrid /></div></section></BaseLayout>
+<style>.page-head{max-width:var(--container-narrow);margin:0 auto var(--space-8);text-align:center}.page-head h1{margin:var(--space-2) 0}.page-head .button{margin-top:var(--space-4)}</style>

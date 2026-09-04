@@ -1,0 +1,5 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="ページが見つかりません" noindex><section class="not-found"><div class="container container--narrow"><p class="number" aria-hidden="true">404</p><h1>ページが見つかりません</h1><p>お探しのページは移動したか、URLが変わった可能性があります。焼きたての便りを探しに、こちらから戻ってみませんか。</p><div class="cluster"><a class="button" href="/">ホームへ戻る</a><a class="button button--secondary" href="/blogs/">ブログを見る</a><a class="button button--secondary" href="/search/">サイト内検索</a></div></div></section></BaseLayout>
+<style>.not-found{display:grid;min-height:60vh;place-items:center;padding:var(--space-9) 0;text-align:center}.number{margin:0;color:var(--color-accent-soft);font-family:var(--font-display);font-size:clamp(6rem,24vw,13rem);font-weight:700;line-height:.8}.not-found h1{margin-top:var(--space-5)}.not-found .cluster{justify-content:center;margin-top:var(--space-6)}</style>

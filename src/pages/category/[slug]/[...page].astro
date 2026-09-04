@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostList from '../../../components/content/PostList.astro';
+import Pagination from '../../../components/content/Pagination.astro';
+import { siteConfig } from '../../../config/site.config';
+export async function getStaticPaths() {
+  const all = (await getCollection('posts')).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  );
+  const pageSize = 12;
+  return Object.values(siteConfig.categories).flatMap((category) => {
+    const posts = all.filter((post) => post.data.categories.includes(category.slug));
+    const totalPages = Math.max(1, Math.ceil(posts.length / pageSize));
+    return Array.from({ length: totalPages }, (_, index) => ({
+      params: {
+        slug: decodeURIComponent(category.slug),
+        page: index === 0 ? undefined : `page/${index + 1}`,
+      },
+      props: {
+        posts: posts.slice(index * pageSize, (index + 1) * pageSize),
+        currentPage: index + 1,
+        totalPages,
+        category,
+      },
+    }));
+  });
+}
+const { posts, currentPage, totalPages, category } = Astro.props;
+const pageTitle = `${category.name}${currentPage > 1 ? ` — ${currentPage}ページ` : ''}`;
+const basePath = `/category/${category.slug}/`;
+---
+<BaseLayout title={pageTitle} description={category.description} breadcrumbs={[{ label: 'Blog', href: '/blogs/' }, { label: category.name }]}>
+  <section class="section">
+    <div class="container">
+      <header class="archive-header"><p class="eyebrow">Category</p><h1>{category.name}</h1><p>{category.description}</p></header>
+      <PostList posts={posts} />
+      <Pagination currentPage={currentPage} totalPages={totalPages} basePath={basePath} />
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .archive-header{max-width:var(--container-narrow);margin:0 auto var(--space-7);text-align:center}
+  .archive-header h1{margin:var(--space-2) 0}
+</style>

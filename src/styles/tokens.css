@@ -1,0 +1,20 @@
+:root {
+  --font-sans: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+  --font-display: "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif;
+  --font-size-xs: .75rem; --font-size-sm: .875rem; --font-size-base: 1rem;
+  --font-size-md: 1.125rem; --font-size-lg: 1.375rem; --font-size-xl: 1.75rem;
+  --font-size-2xl: clamp(2rem, 5vw, 3.5rem); --font-size-3xl: clamp(2.5rem, 7vw, 5rem);
+  --line-tight: 1.25; --line-base: 1.75; --line-loose: 2;
+  --tracking-tight: -.02em; --tracking-base: .02em; --tracking-wide: .12em;
+  --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem;
+  --space-5: 1.5rem; --space-6: 2rem; --space-7: 2.5rem; --space-8: 3rem;
+  --space-9: 4rem; --space-10: 5rem; --space-11: 6rem; --space-12: 8rem;
+  --color-bg: #fffaf2; --color-surface: #fffefb; --color-surface-warm: #f5ead9;
+  --color-text: #2f241d; --color-text-muted: #65584e; --color-primary: #743f25;
+  --color-primary-hover: #522a18; --color-accent: #98451f; --color-accent-soft: #f1d2ac;
+  --color-border: #d9c7b4; --color-focus: #075e72; --color-white: #fff;
+  --shadow-sm: 0 2px 12px rgb(70 43 24 / .08); --shadow-md: 0 16px 42px rgb(70 43 24 / .13);
+  --radius-sm: .4rem; --radius-md: .8rem; --radius-lg: 1.5rem; --radius-pill: 999px;
+  --container: 72rem; --container-narrow: 46rem; --header-height: 5rem;
+  --transition: 180ms ease;
+}

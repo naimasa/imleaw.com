@@ -1,0 +1,8 @@
+---
+import { siteConfig } from '../../config/site.config';
+---
+<section class="contact surface" aria-labelledby="contact-title"><p class="eyebrow">Contact</p><h2 id="contact-title">ご予約・お問い合わせ</h2><p>レッスンやパンについて、お気軽にご連絡ください。</p><address><strong>所在地</strong><br />{siteConfig.store.address}</address><p><strong>メール</strong><br /><a href={`mailto:${siteConfig.store.email}`}>{siteConfig.store.email}</a></p><div class="actions"><a class="button" href={`mailto:${siteConfig.store.email}`}>メールを送る</a><button class="button button--secondary copy-email" type="button" data-email={siteConfig.store.email} aria-describedby="copy-feedback">メールアドレスをコピー</button><a class="button button--secondary" href={siteConfig.store.lineUrl} target="_blank" rel="noopener">LINEで連絡<span class="visually-hidden">（新しいタブ）</span></a></div><span id="copy-feedback" class="feedback" role="status" aria-live="polite"></span></section>
+<script is:inline>
+  document.querySelectorAll('.copy-email').forEach((button) => button.addEventListener('click', async () => { const feedback = button.parentElement?.nextElementSibling; try { await navigator.clipboard.writeText(button.dataset.email || ''); if (feedback) feedback.textContent = 'コピーしました'; } catch { if (feedback) feedback.textContent = 'コピーできませんでした。メールアドレスを長押ししてください。'; } window.setTimeout(() => { if (feedback) feedback.textContent = ''; }, 3000); }));
+</script>
+<style>.contact{position:relative;padding:var(--space-7)}.contact h2{margin-bottom:var(--space-4)}.contact address{font-style:normal}.actions{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-5)}.feedback{position:absolute;bottom:var(--space-2);left:var(--space-7);color:var(--color-text-muted);font-size:var(--font-size-sm)}</style>

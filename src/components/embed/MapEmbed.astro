@@ -1,0 +1,6 @@
+---
+import { siteConfig } from '../../config/site.config';
+const query = encodeURIComponent(siteConfig.store.address);
+---
+<section class="map-section" aria-labelledby="map-title"><div class="map-copy"><p class="eyebrow">Access</p><h2 id="map-title">須坂の蔵の街並みの先に</h2><p>小道にひっそり佇む古民家の工房です。通りが狭いため、近隣駐車場をご利用のうえお越しください。</p><a class="button button--secondary" href={`https://www.google.com/maps/dir/?api=1&destination=${query}`} target="_blank" rel="noopener">Google マップで経路を開く<span class="visually-hidden">（新しいタブ）</span></a></div><div class="map surface"><iframe title="イム・レーオ周辺地図" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src={`https://www.google.com/maps?q=${query}&output=embed`} allowfullscreen></iframe><noscript><p><a href={`https://www.google.com/maps/search/?api=1&query=${query}`}>Google マップで場所を見る</a></p></noscript></div></section>
+<style>.map-section{display:grid;gap:var(--space-6);align-items:center}.map{min-height:24rem;overflow:hidden;background:var(--color-surface-warm)}.map iframe{width:100%;height:24rem;border:0}.map-copy p{max-width:34rem}@media(min-width:48rem){.map-section{grid-template-columns:1fr 1.5fr;gap:var(--space-8)}}</style>

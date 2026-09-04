@@ -1,0 +1,12 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import { permalinkToRoute } from '../lib/permalink';
+export async function getStaticPaths() {
+  const reserved = new Set(['/', '/blogs/', '/contacts/', '/instagram/']);
+  return (await getCollection('pages')).filter((page) => !reserved.has(page.data.permalink)).map((page) => ({ params:{slug:permalinkToRoute(page.data.permalink).join('/')}, props:{page} }));
+}
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+<PageLayout title={page.data.title}><Content /></PageLayout>

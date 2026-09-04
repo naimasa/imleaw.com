@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/content/Hero.astro';
+import PostList from '../components/content/PostList.astro';
+import InstagramGrid from '../components/embed/InstagramGrid.astro';
+import ContactSection from '../components/embed/ContactSection.astro';
+const posts = (await getCollection('posts')).sort((a,b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0,6);
+const home = (await getCollection('pages')).find((page) => page.data.permalink === '/');
+const HomeContent = home ? (await render(home)).Content : null;
+---
+<BaseLayout><Hero />
+  <section class="section intro"><div class="container container--narrow"><p class="eyebrow">Welcome to Im Leaw</p><h2>食卓に寄り添うパンを、須坂から。</h2><p>国産小麦を中心に、時間をかけて発酵させたパンを焼いています。少人数のパン教室では、ご家庭でも繰り返し楽しめるパン作りを基本からお伝えします。</p>{HomeContent && <div class="home-note prose"><HomeContent /></div>}</div></section>
+  <section class="section lessons"><div class="container"><header class="section-title"><p class="eyebrow">Lessons & Courses</p><h2>パンのある暮らしを、一緒に</h2></header><div class="course-grid"><a class="course surface" href="/about-the-lesson/"><span>01</span><h3>パン教室について</h3><p>少人数で、基本から丁寧に。レッスンの考え方をご紹介します。</p></a><a class="course surface" href="/basic-course/"><span>02</span><h3>Basic course</h3><p>はじめての方にもおすすめ。食卓に合わせやすいパンを学びます。</p></a><a class="course surface" href="/advanced-course/"><span>03</span><h3>Advanced course</h3><p>成形や素材の幅を広げて、さらに奥深いパン作りへ。</p></a></div></div></section>
+  <section class="section"><div class="container"><header class="section-title"><p class="eyebrow">Journal</p><h2>最新のブログ</h2></header><PostList posts={posts} /><p class="more"><a class="button button--secondary" href="/blogs/">すべての記事を見る</a></p></div></section>
+  <section class="section instagram"><div class="container"><header class="section-title"><p class="eyebrow">Instagram</p><h2>工房からの便り</h2></header><InstagramGrid /><p class="more"><a class="button" href="/instagram/">Instagramを見る</a></p></div></section>
+  <section class="section"><div class="container container--narrow"><ContactSection /></div></section>
+</BaseLayout>
+<style>.intro{text-align:center}.intro h2{font-size:var(--font-size-2xl)}.intro>div>p:not(.eyebrow){font-size:var(--font-size-md)}.home-note{margin:var(--space-6) auto 0;padding-top:var(--space-5);border-top:1px solid var(--color-border)}.lessons,.instagram{background:var(--color-surface-warm)}.course-grid{display:grid;gap:var(--space-5)}.course{display:block;padding:var(--space-6);color:var(--color-text);text-decoration:none}.course>span{color:var(--color-accent);font-family:var(--font-display);font-size:var(--font-size-lg)}.course h3{margin:var(--space-3) 0}.course p{margin:0;color:var(--color-text-muted)}.course:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}.more{margin:var(--space-7) 0 0;text-align:center}@media(min-width:48rem){.course-grid{grid-template-columns:repeat(3,1fr)}}</style>

@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site.config';
+---
+<BaseLayout title="サイト内検索" description="イム・レーオのブログとページを検索します。" breadcrumbs={[{label:'サイト内検索'}]} noindex>
+  <section class="section"><div class="container container--narrow"><header class="search-head"><p class="eyebrow">Search</p><h1>サイト内検索</h1><p>パンの名前や、気になる言葉から記事を探せます。</p></header><div class="search-controls surface"><label for="search-input">キーワード</label><input id="search-input" type="search" inputmode="search" autocomplete="off" placeholder="例：バゲット" /><label for="category-filter">カテゴリ</label><select id="category-filter"><option value="">すべてのカテゴリ</option>{Object.values(siteConfig.categories).map((category) => <option value={category.name}>{category.name}</option>)}</select></div><p id="search-status" role="status" aria-live="polite">キーワードを2文字以上入力してください。</p><div id="search-results"></div><noscript><p class="empty-state surface">検索にはJavaScriptが必要です。<a href="/blogs/">ブログ一覧</a>から記事をご覧いただけます。</p></noscript></div></section>
+</BaseLayout>
+<script>
+  const input = document.querySelector<HTMLInputElement>('#search-input');
+  const select = document.querySelector<HTMLSelectElement>('#category-filter');
+  const status = document.querySelector<HTMLElement>('#search-status');
+  const results = document.querySelector<HTMLElement>('#search-results');
+  const params = new URLSearchParams(location.search);
+  if (input) input.value = params.get('q') || '';
+  let timer = 0;
+  async function search() {
+    if (!input || !select || !status || !results) return;
+    const query = input.value.trim(); results.replaceChildren();
+    if (query.length < 2) { status.textContent = 'キーワードを2文字以上入力してください。'; return; }
+    status.textContent = '検索しています…';
+    try {
+      const pagefindUrl = '/pagefind/pagefind.js';
+      const pagefind = await import(/* @vite-ignore */ pagefindUrl);
+      const response = await pagefind.search(query, { filters: select.value ? { category: select.value } : undefined });
+      const items = await Promise.all(response.results.slice(0,50).map((item: { data: () => Promise<{url:string,meta:{title?:string},excerpt:string}> }) => item.data()));
+      status.textContent = `${response.results.length}件見つかりました。`;
+      items.forEach((item) => { const article=document.createElement('article'); article.className='search-result surface'; const title=document.createElement('h2'); const link=document.createElement('a'); link.href=item.url; link.textContent=item.meta.title || '無題'; title.append(link); const excerpt=document.createElement('p'); excerpt.innerHTML=item.excerpt; article.append(title,excerpt); results.append(article); });
+      history.replaceState(null,'',`${location.pathname}?q=${encodeURIComponent(query)}`);
+    } catch { status.textContent = '検索を読み込めませんでした。時間をおいてお試しください。'; }
+  }
+  const schedule = () => { window.clearTimeout(timer); timer=window.setTimeout(search,250); };
+  input?.addEventListener('input',schedule); select?.addEventListener('change',search); if (input?.value) search();
+</script>
+<style>.search-head{text-align:center;margin-bottom:var(--space-7)}.search-head h1{margin:var(--space-2) 0}.search-controls{display:grid;grid-template-columns:auto 1fr;gap:var(--space-3);align-items:center;padding:var(--space-5)}.search-controls label{font-weight:700}.search-controls input,.search-controls select{width:100%;min-height:2.8rem;padding:var(--space-2) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-white);color:var(--color-text)}#search-status{color:var(--color-text-muted);font-size:var(--font-size-sm)}#search-results{display:grid;gap:var(--space-4)}:global(.search-result){padding:var(--space-5)}:global(.search-result h2){font-size:var(--font-size-lg)}:global(.search-result p){margin:0;color:var(--color-text-muted)}@media(max-width:35rem){.search-controls{grid-template-columns:1fr}}</style>

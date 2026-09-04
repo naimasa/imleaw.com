@@ -1,0 +1,10 @@
+---
+import { siteConfig } from '../../config/site.config';
+export interface Item { label: string; href?: string }
+interface Props { items?: Item[] }
+const { items = [] } = Astro.props;
+const crumbs: Item[] = [{ label: 'Home', href: '/' }, ...items];
+const jsonLd = { '@context':'https://schema.org', '@type':'BreadcrumbList', itemListElement: crumbs.map((item, index) => ({ '@type':'ListItem', position:index + 1, name:item.label, ...(item.href ? { item:new URL(item.href, siteConfig.url).href } : {}) })) };
+---
+{items.length > 0 && <nav class="breadcrumb container" aria-label="パンくずリスト"><ol>{crumbs.map((item, i) => <li>{item.href && i < crumbs.length - 1 ? <a href={item.href}>{item.label}</a> : <span aria-current="page">{item.label}</span>}</li>)}</ol><script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} /></nav>}
+<style>.breadcrumb{padding-top:var(--space-4);font-size:var(--font-size-sm);color:var(--color-text-muted)}.breadcrumb ol{display:flex;flex-wrap:wrap;gap:var(--space-2);margin:0;padding:0;list-style:none}.breadcrumb li+li::before{content:'›';margin-right:var(--space-2);color:var(--color-text-muted)}.breadcrumb span{overflow-wrap:anywhere}</style>

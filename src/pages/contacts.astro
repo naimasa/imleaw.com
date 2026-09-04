@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MapEmbed from '../components/embed/MapEmbed.astro';
+import ContactSection from '../components/embed/ContactSection.astro';
+---
+<BaseLayout title="Access & Contacts" description="須坂のパン工房イム・レーオへのアクセスとお問い合わせ。" breadcrumbs={[{label:'Access & Contacts'}]}><div class="container"><header class="page-head"><p class="eyebrow">Visit us</p><h1>Access & Contacts</h1><p>パンの販売日・レッスンのご案内はInstagramでもお知らせしています。</p></header><section class="section"><MapEmbed /></section><section class="contact-wrap"><ContactSection /></section></div></BaseLayout>
+<style>.page-head{padding-top:var(--space-8);text-align:center}.page-head h1{margin:var(--space-2) 0}.contact-wrap{max-width:var(--container-narrow);margin:0 auto;padding-bottom:var(--space-11)}</style>
