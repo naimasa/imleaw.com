@@ -8,9 +8,11 @@ const year = new Date().getFullYear();
     <nav aria-label="フッターナビゲーション">
       <ul>
         {siteConfig.nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        <li><a href="/search/">サイト内検索</a></li>
         <li><a href="/en/" style="font-weight: 700;">English (Bakery Guide)</a></li>
       </ul>
     </nav>
+
     <div class="social"><a href={`mailto:${siteConfig.store.email}`}>Email</a><a href={siteConfig.store.lineUrl} target="_blank" rel="noopener">LINE<span class="visually-hidden">（新しいタブ）</span></a><a href={siteConfig.store.instagramUrl} target="_blank" rel="noopener">Instagram<span class="visually-hidden">（新しいタブ）</span></a></div>
   </div>
   <p class="copyright">© {year} {siteConfig.title}</p>

@@ -33,13 +33,32 @@ const basePath = `/category/${category.slug}/`;
 <BaseLayout title={pageTitle} description={category.description} breadcrumbs={[{ label: 'Blog', href: '/blogs/' }, { label: category.name }]}>
   <section class="section">
     <div class="container">
-      <header class="archive-header"><p class="eyebrow">Category</p><h1>{category.name}</h1><p>{category.description}</p></header>
+      <header class="archive-header">
+        <p class="eyebrow">Category</p>
+        <h1>{category.name}</h1>
+        <p>{category.description}</p>
+      </header>
+      <nav class="filters" aria-label="カテゴリで絞り込む">
+        <a href="/blogs/">すべて</a>
+        {Object.values(siteConfig.categories).map((c) => (
+          <a href={`/category/${c.slug}/`} aria-current={c.slug === category.slug ? 'page' : undefined}>
+            {c.name}
+          </a>
+        ))}
+        <a href="/search/" class="search-btn">🔍 記事を検索</a>
+      </nav>
       <PostList posts={posts} />
       <Pagination currentPage={currentPage} totalPages={totalPages} basePath={basePath} />
     </div>
   </section>
 </BaseLayout>
 <style>
-  .archive-header{max-width:var(--container-narrow);margin:0 auto var(--space-7);text-align:center}
+  .archive-header{max-width:var(--container-narrow);margin:0 auto var(--space-6);text-align:center}
   .archive-header h1{margin:var(--space-2) 0}
+  .filters{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-7)}
+  .filters a{padding:var(--space-2) var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-pill);background:var(--color-surface);font-size:var(--font-size-sm);font-weight:700;text-decoration:none}
+  .filters a[aria-current=page],.filters a:hover{background:var(--color-primary);color:var(--color-white);border-color:var(--color-primary)}
+  .search-btn{background:var(--color-surface-warm)!important;border-color:var(--color-accent)!important;color:var(--color-primary)!important}
+  .search-btn:hover{background:var(--color-primary)!important;color:var(--color-white)!important}
 </style>
+

@@ -12,6 +12,30 @@ export async function getStaticPaths() {
 const { posts, currentPage, totalPages } = Astro.props;
 ---
 <BaseLayout title={currentPage === 1 ? 'Blog' : `Blog — ${currentPage}ページ`} description="イム・レーオのパン作りと須坂での暮らしを綴るブログ。" breadcrumbs={[{label:'Blog'}]}>
-  <section class="archive section"><div class="container"><header class="archive-header"><p class="eyebrow">Journal</p><h1>Blog</h1><p>パン作りと、須坂での季節の暮らし。</p></header><nav class="filters" aria-label="カテゴリで絞り込む"><a href="/blogs/" aria-current="page">すべて</a>{Object.values(siteConfig.categories).map((category) => <a href={`/category/${category.slug}/`}>{category.name}</a>)}</nav><PostList posts={posts} /><Pagination currentPage={currentPage} totalPages={totalPages} basePath="/blogs/" /></div></section>
+  <section class="archive section">
+    <div class="container">
+      <header class="archive-header">
+        <p class="eyebrow">Journal</p>
+        <h1>Blog</h1>
+        <p>パン作りと、須坂での季節の暮らし。</p>
+      </header>
+      <nav class="filters" aria-label="カテゴリで絞り込む">
+        <a href="/blogs/" aria-current="page">すべて</a>
+        {Object.values(siteConfig.categories).map((category) => <a href={`/category/${category.slug}/`}>{category.name}</a>)}
+        <a href="/search/" class="search-btn">🔍 記事を検索</a>
+      </nav>
+      <PostList posts={posts} />
+      <Pagination currentPage={currentPage} totalPages={totalPages} basePath="/blogs/" />
+    </div>
+  </section>
 </BaseLayout>
-<style>.archive-header{text-align:center;margin-bottom:var(--space-6)}.archive-header h1{margin:var(--space-2) 0}.filters{display:flex;justify-content:center;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-7)}.filters a{padding:var(--space-2) var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-pill);background:var(--color-surface);font-size:var(--font-size-sm);font-weight:700;text-decoration:none}.filters a[aria-current=page],.filters a:hover{background:var(--color-primary);color:var(--color-white);border-color:var(--color-primary)}</style>
+<style>
+  .archive-header{text-align:center;margin-bottom:var(--space-6)}
+  .archive-header h1{margin:var(--space-2) 0}
+  .filters{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-7)}
+  .filters a{padding:var(--space-2) var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-pill);background:var(--color-surface);font-size:var(--font-size-sm);font-weight:700;text-decoration:none}
+  .filters a[aria-current=page],.filters a:hover{background:var(--color-primary);color:var(--color-white);border-color:var(--color-primary)}
+  .search-btn{background:var(--color-surface-warm)!important;border-color:var(--color-accent)!important;color:var(--color-primary)!important}
+  .search-btn:hover{background:var(--color-primary)!important;color:var(--color-white)!important}
+</style>
+

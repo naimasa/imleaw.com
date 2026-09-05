@@ -6,6 +6,12 @@ const isEn = currentPath.startsWith('/en');
 <nav id="primary-nav" class="nav" aria-label="メインナビゲーション">
   <ul>
     {siteConfig.nav.map((item) => <li><a href={item.href} aria-current={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) ? 'page' : undefined}>{item.label}</a></li>)}
+    <li>
+      <a href="/search/" aria-current={currentPath === '/search/' ? 'page' : undefined} class="nav-search-link" title="サイト内検索">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <span>検索</span>
+      </a>
+    </li>
     <li class="lang-switch-item">
       {isEn ? (
         <a class="lang-badge" href="/" title="日本語ページへ切り替え">JA (日本語)</a>
@@ -14,6 +20,7 @@ const isEn = currentPath.startsWith('/en');
       )}
     </li>
   </ul>
+
 </nav>
 <style>
   .nav ul{display:flex;align-items:center;gap:var(--space-5);margin:0;padding:0;list-style:none}
