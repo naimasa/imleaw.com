@@ -3,7 +3,7 @@ title: "オンラインレッスンに向けての準備"
 permalink: "/2022/02/22/%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3%e3%83%ac%e3%83%83%e3%82%b9%e3%83%b3%e3%81%ab%e5%90%91%e3%81%91%e3%81%a6%e3%81%ae%e6%ba%96%e5%82%99/"
 date: 2022-02-22T06:46:00+09:00
 categories: ["%e3%83%91%e3%83%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6"]
-heroImage: "../../assets/uploads/2022/02/バターロール.jpg"
+heroImage: "../../assets/uploads/2022/02/バターロール.jpg"
 heroImageAlt: "オンラインレッスンに向けての準備"
 wpPostId: 336
 ---
@@ -21,4 +21,4 @@ wpPostId: 336
 
 写真は動画撮影用に作ったテーブルロールを、動画から静止画として抜き出した写真です。
 
-![](/wp-content/uploads/2022/02/バターロール-1024x576.jpg)
+![](/wp-content/uploads/2022/02/バターロール-1024x576.jpg)
