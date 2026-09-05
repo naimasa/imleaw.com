@@ -73,20 +73,22 @@
 - **Findings / Issues**: Claude Code のセッション上限到達に伴い、Codex CLI および Antigravity による自前監査・修正にフォールバックして全テストを完走（`local-only` 規約遵守）
 - **Next**: @devops によるローカル起動確認およびデプロイ設定検証
 
-## [2026-09-05 09:05:00] @engineer — ユーザーフィードバックの反映（ヒーロー改行位置・Instagram動線・旧プラグイン残骸除去）
+## [2026-09-05 09:17:00] @engineer — Instagram ピン留め管理機能（方式D: CMS・設定ファイル管理）の実装
 - **Status**: ✅ Done
-- **Input**: ユーザーからの3件のフィードバック（ヒーロータイトルの「ら、」折り返し修正、ヒーローバナーへのInstagramリンク追加、トップページ固定コンテンツ内の旧WP Instagramプラグイン残骸テキストの除去）
+- **Input**: ユーザーからの「方式D（CMS・ピン留め管理）」選択要望
 - **Actions**:
-  - `src/components/content/Hero.astro`: タイトル文字列を `<span class="hero-line">パンの香りから、</span><br /><span class="hero-line">小さな幸せを。</span>` に変更し、`.hero-line { display: inline-block; white-space: nowrap; }` を指定して「、」の後でのみ確実に改行されるよう修正。
-  - `src/components/content/Hero.astro`: バナーのボタングループに `Instagram` への外部リンクボタンを追加。
-  - `src/content/pages/page-1987.md`: 旧 WordPress の `sb-instagram-feed` プラグインが出力していたプレースホルダー画像・残骸テキストを削除し、最新の営業案内と Access マップのみにクリーンアップ（Instagram のギャラリーは `InstagramGrid` セクションおよび `/instagram/` ページで正常表示）。
-  - `npm run build` (519 pages) および `node scripts/verify-urls.mjs` (1571/1571 pass) を再実行し合格。
+  - `src/data/instagram.json`: ピン留め写真・リンク先URL（個別投稿URLまたは公式プロフィール）・キャプションを管理するデータ構造を作成。
+  - `public/admin/config.yml`: Decap CMS に「サイト設定 > Instagram ピン留め写真」管理コレクションを追加。管理画面から写真の追加・並び替え・個別投稿リンクの設定が可能に。
+  - `src/components/embed/InstagramGrid.astro`: 静的JSONから動的にピン留めリストをレンダリングし、投稿URLへのリンク、ホバー時のキャプション表示と上質なオーバーレイ効果を実装。
+  - `npm run build` (519 pages) および `node scripts/verify-urls.mjs` (1571/1571 pass) を通過確認。
 - **Changed Files**:
-  - `src/components/content/Hero.astro`
-  - `src/content/pages/page-1987.md`
-- **CLI Calls**: なし（20行未満のピンポイント修正のため自前処理）
+  - `src/data/instagram.json`
+  - `public/admin/config.yml`
+  - `src/components/embed/InstagramGrid.astro`
+- **CLI Calls**: なし（自前処理）
 - **Cost**: Claude=0 / Codex=0 / Gemini自前=1
-- **Findings / Issues**: 特になし。デザインとコンテンツの整合性が向上。
-- **Next**: ユーザーへの完了報告
+- **Findings / Issues**: APIキー不要でトークン失効リスクのない安定したピン留め管理基盤が完成。
+- **Next**: ユーザーへの完了報告と操作方法のご案内
+
 
 

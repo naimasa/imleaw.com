@@ -59,3 +59,21 @@ collections:
         pattern: ['^/(?:[^/?#]+/)*$', "先頭と末尾に / が必要です"]
       - { label: 表示順, name: order, widget: number, value_type: int, default: 0 }
       - { label: 本文, name: body, widget: markdown }
+
+  - name: settings
+    label: サイト設定
+    files:
+      - name: instagram
+        label: Instagram ピン留め写真
+        file: src/data/instagram.json
+        format: json
+        fields:
+          - label: ピン留め写真一覧
+            name: pins
+            widget: list
+            summary: "{{fields.caption}} ({{fields.image}})"
+            fields:
+              - { label: 写真, name: image, widget: image }
+              - { label: Instagram投稿URL（未入力時は公式プロフィール）, name: url, widget: string, required: false, default: "https://www.instagram.com/im_leaw_suzaka/" }
+              - { label: キャプション / 写真の説明, name: caption, widget: string, required: false, default: "" }
+
