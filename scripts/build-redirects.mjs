@@ -19,6 +19,15 @@ for (let index = 0; index < ledger.media.length; index += 1) {
 redirects.set('/feed/', '/feed/index.xml 200');
 redirects.set('/sitemap.xml', '/sitemap-index.xml 301');
 
+// Ensure physical XML files exist for /sitemap.xml and /sitemap_index.xml
+try {
+  const sitemapIndexContent = await readFile(path.join(dist, 'sitemap-index.xml'), 'utf8');
+  await writeFile(path.join(dist, 'sitemap.xml'), sitemapIndexContent);
+  await writeFile(path.join(dist, 'sitemap_index.xml'), sitemapIndexContent);
+} catch (error) {
+  console.warn('sitemap-index.xml not found to copy for sitemap.xml:', error.message);
+}
+
 await mkdir(dist, { recursive: true });
 const rules = [...redirects].map(([source, destination]) =>
   destination.endsWith(' 200') ? `${source} ${destination}` : `${source} ${destination} 301`,
