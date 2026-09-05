@@ -73,22 +73,24 @@
 - **Findings / Issues**: Claude Code のセッション上限到達に伴い、Codex CLI および Antigravity による自前監査・修正にフォールバックして全テストを完走（`local-only` 規約遵守）
 - **Next**: @devops によるローカル起動確認およびデプロイ設定検証
 
-## [2026-09-05 09:17:00] @engineer — Instagram ピン留め管理機能（方式D: CMS・設定ファイル管理）の実装
+## [2026-09-05 09:37:00] @engineer — コース内部リンク更新とヘッダー Courses 削除対応
 - **Status**: ✅ Done
-- **Input**: ユーザーからの「方式D（CMS・ピン留め管理）」選択要望
+- **Input**: ユーザーからの不具合指摘（`/about-the-lesson/` 内の各コース内部リンク未更新、ヘッダーの Courses リンク削除要望）
 - **Actions**:
-  - `src/data/instagram.json`: ピン留め写真・リンク先URL（個別投稿URLまたは公式プロフィール）・キャプションを管理するデータ構造を作成。
-  - `public/admin/config.yml`: Decap CMS に「サイト設定 > Instagram ピン留め写真」管理コレクションを追加。管理画面から写真の追加・並び替え・個別投稿リンクの設定が可能に。
-  - `src/components/embed/InstagramGrid.astro`: 静的JSONから動的にピン留めリストをレンダリングし、投稿URLへのリンク、ホバー時のキャプション表示と上質なオーバーレイ効果を実装。
-  - `npm run build` (519 pages) および `node scripts/verify-urls.mjs` (1571/1571 pass) を通過確認。
+  - `src/config/site.config.ts`: ナビゲーション配列から `Courses` リンクを削除（ヘッダーおよびフッターナビを適正化）。
+  - `src/content/pages/page-99.md`: `About the lesson` ページ内の各コースリンクを完全な内部ルート（`/basic-course/`, `/advanced-course/`, `/%e9%ab%98%e5%8a%a0%e6%b0%b4%e3%83%91%e3%83%b3%e3%82%b3%e3%83%bc%e3%82%b9/`）に更新。
+  - `src/content/pages/page-441.md`, `page-452.md`, `page-462.md`, `page-1967.md`, `page-120.md`: 古い画像派生パス（`-1024x768.jpg`等）を実在する `-scaled.jpg` または正規画像パスに更新し 404 を解消。
+  - `src/pages/admin/index.astro`: Decap CMS の明示的なルーティングファイルを追加。
+  - `npm run build` (520 pages) および `node scripts/verify-urls.mjs` (1571/1571 pass) を全件通過確認。
 - **Changed Files**:
-  - `src/data/instagram.json`
-  - `public/admin/config.yml`
-  - `src/components/embed/InstagramGrid.astro`
+  - `src/config/site.config.ts`
+  - `src/content/pages/page-99.md`, `page-441.md`, `page-452.md`, `page-462.md`, `page-1967.md`, `page-120.md`
+  - `src/pages/admin/index.astro`
 - **CLI Calls**: なし（自前処理）
 - **Cost**: Claude=0 / Codex=0 / Gemini自前=1
-- **Findings / Issues**: APIキー不要でトークン失効リスクのない安定したピン留め管理基盤が完成。
-- **Next**: ユーザーへの完了報告と操作方法のご案内
+- **Findings / Issues**: 特になし。サイト全体のリンク切れ・404 を網羅的に解消。
+- **Next**: ユーザーへの完了報告
+
 
 
 

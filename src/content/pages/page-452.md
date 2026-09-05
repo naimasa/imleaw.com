@@ -16,4 +16,5 @@ wpPageId: 452
 
 Advanced 全6回 （各6500円）※復習用お持ち帰り生地代を含みます。
 
-![](/wp-content/uploads/2022/03/IMG_5889-1-768x1024.jpg)
+![](/wp-content/uploads/2022/03/IMG_5889-1-scaled.jpg)
+

@@ -14,4 +14,5 @@ wpPageId: 462
 
 ハードパンコース 全3回 （各回7500円）※持ち帰り生地を含みます。
 
-![](/wp-content/uploads/2022/03/IMG_5802-768x1024.jpg)
+![](/wp-content/uploads/2022/03/IMG_5802-scaled.jpg)
+

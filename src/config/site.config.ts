@@ -5,12 +5,12 @@ export const siteConfig = {
   nav: [
     { label: 'Home', href: '/' },
     { label: 'About the lesson', href: '/about-the-lesson/' },
-    { label: 'Courses', href: '/basic-course/' },
     { label: 'Blog', href: '/blogs/' },
     { label: 'Instagram', href: '/instagram/' },
     { label: 'Who am I', href: '/who-am-i/' },
     { label: 'Access & Contacts', href: '/contacts/' },
   ],
+
   categories: {
     '%e3%83%91%e3%83%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6': { name: 'パンについて', slug: '%e3%83%91%e3%83%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6', description: 'パン作り、レッスン、焼き上がりの記録。', color: 'var(--color-category-bread)' },
     '%e6%97%a5%e3%80%85%e3%81%ae%e6%9a%ae%e3%82%89%e3%81%97': { name: '日々の暮らし', slug: '%e6%97%a5%e3%80%85%e3%81%ae%e6%9a%ae%e3%82%89%e3%81%97', description: '季節と食卓を楽しむ日々の便り。', color: 'var(--color-category-life)' },

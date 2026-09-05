@@ -10,12 +10,13 @@ wpPageId: 99
 
 ※パンメニューによっては一部、海外産を使用することがあります
 
--   [Basic コース](https://imleaw.com/basic-course/)（全4回）
+-   [Basic コース](/basic-course/)（全4回）
 
 Basic コース受講後、
 
--   [Advanced コース](https://imleaw.com/advanced-course/)（全6回＋α）
--   ハードパンコース
+-   [Advanced コース](/advanced-course/)（全6回＋α）
+-   [ハードパンコース](/%e9%ab%98%e5%8a%a0%e6%b0%b4%e3%83%91%e3%83%b3%e3%82%b3%e3%83%bc%e3%82%b9/)
+
 
 など、お好みのパンに応じてお進みください。
 

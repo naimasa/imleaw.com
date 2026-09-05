@@ -20,4 +20,5 @@ Basic 全4回 （各6000円） ※復習用お持ち帰り生地代を含みま�
 
 単発でのレッスンも承ります。
 
-![](/wp-content/uploads/2022/03/IMG_5866-1-1024x768.jpg)
+![](/wp-content/uploads/2022/03/IMG_5866-1-scaled.jpg)
+
