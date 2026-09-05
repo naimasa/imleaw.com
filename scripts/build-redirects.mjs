@@ -17,6 +17,7 @@ for (let index = 0; index < ledger.media.length; index += 1) {
 
 // Cloudflare Pages serves the generated XML through an internal rewrite.
 redirects.set('/feed/', '/feed/index.xml 200');
+redirects.set('/sitemap.xml', '/sitemap-index.xml 301');
 
 await mkdir(dist, { recursive: true });
 const rules = [...redirects].map(([source, destination]) =>
