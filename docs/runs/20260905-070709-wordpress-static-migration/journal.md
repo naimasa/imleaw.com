@@ -73,15 +73,20 @@
 - **Findings / Issues**: Claude Code のセッション上限到達に伴い、Codex CLI および Antigravity による自前監査・修正にフォールバックして全テストを完走（`local-only` 規約遵守）
 - **Next**: @devops によるローカル起動確認およびデプロイ設定検証
 
-## [2026-09-05 08:50:00] @devops — ローカルプレビュー起動と全エンドポイント検証
+## [2026-09-05 09:05:00] @engineer — ユーザーフィードバックの反映（ヒーロー改行位置・Instagram動線・旧プラグイン残骸除去）
 - **Status**: ✅ Done
-- **Input**: `dist/` ビルド成果物および Astro サーバー設定
+- **Input**: ユーザーからの3件のフィードバック（ヒーロータイトルの「ら、」折り返し修正、ヒーローバナーへのInstagramリンク追加、トップページ固定コンテンツ内の旧WP Instagramプラグイン残骸テキストの除去）
 - **Actions**:
-  - `npx astro preview --port 4321 --host` をバックグラウンド起動
-  - トップ (`/`)、ブログ一覧 (`/blogs/`)、お問い合わせ (`/contacts/`)、レッスン (`/about-the-lesson/`)、コース (`/basic-course/`)、Instagram (`/instagram/`)、プロフィール (`/who-am-i/`)、検索 (`/search/`)、カテゴリ (`/category/.../`)、記事詳細 (`/2024/09/10/.../`)、サイトマップ (`/sitemap-index.xml`)、robots.txt、Decap CMS 管理画面 (`/admin/`) をエンドポイント自動テストで 200 応答確認
-- **Changed Files**: なし
-- **CLI Calls**: なし
+  - `src/components/content/Hero.astro`: タイトル文字列を `<span class="hero-line">パンの香りから、</span><br /><span class="hero-line">小さな幸せを。</span>` に変更し、`.hero-line { display: inline-block; white-space: nowrap; }` を指定して「、」の後でのみ確実に改行されるよう修正。
+  - `src/components/content/Hero.astro`: バナーのボタングループに `Instagram` への外部リンクボタンを追加。
+  - `src/content/pages/page-1987.md`: 旧 WordPress の `sb-instagram-feed` プラグインが出力していたプレースホルダー画像・残骸テキストを削除し、最新の営業案内と Access マップのみにクリーンアップ（Instagram のギャラリーは `InstagramGrid` セクションおよび `/instagram/` ページで正常表示）。
+  - `npm run build` (519 pages) および `node scripts/verify-urls.mjs` (1571/1571 pass) を再実行し合格。
+- **Changed Files**:
+  - `src/components/content/Hero.astro`
+  - `src/content/pages/page-1987.md`
+- **CLI Calls**: なし（20行未満のピンポイント修正のため自前処理）
 - **Cost**: Claude=0 / Codex=0 / Gemini自前=1
-- **Findings / Issues**: すべてのエンドポイントがエラーなく正常に応答
-- **Next**: Step 5 最終レポート生成（`report.md`, `index.md`, `usage.md`）
+- **Findings / Issues**: 特になし。デザインとコンテンツの整合性が向上。
+- **Next**: ユーザーへの完了報告
+
 
