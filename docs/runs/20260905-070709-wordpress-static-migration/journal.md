@@ -77,22 +77,21 @@
 - **Status**: ✅ Done
 - **Input**: ユーザーからの「外国人観光客・在住者向けに、ハードパンを扱う店舗販売を英語で案内するページを用意したい」との要望
 - **Actions**:
-## [2026-09-05 10:08:00] @engineer — Instagram 投稿URL直接指定による公式埋め込みカード表示機能の実装
+## [2026-09-05 10:14:00] @engineer — トップページの Instagram メイン化レイアウト最適化
 - **Status**: ✅ Done
-- **Input**: ユーザーからの「画像選択ではなく Instagram 投稿の個別リンク（URL）を直接入力して表示させたい」との要望
+- **Input**: ユーザーからの「ブログより Instagram への投稿が中心のため、トップページを Instagram メインにしたい」との要望
 - **Actions**:
-  - `src/data/instagram.json`: 投稿 URL（`url`）と管理用メモ（`title`）を管理するデータ構造にアップデート。
-  - `public/admin/config.yml`: Decap CMS の「サイト設定 > Instagram 表示投稿設定」を更新し、Instagram 投稿 URL を直接入力・並び替えできるフォームに改善。
-  - `src/components/embed/InstagramGrid.astro`: Instagram 公式の埋め込みスクリプト（`//www.instagram.com/embed.js`）および `blockquote.instagram-media` カード形式を採用。写真・複数枚スライド・リール動画・キャプションがそのまま美麗に表示されるレスポンシブグリッドを構築。
+  - `src/components/content/Hero.astro`: ヒーローバナーのボタンを「パン教室について」と「Instagram（最新情報）」の2つに整理し、動線を一本化。
+  - `src/pages/index.astro`: トップページから「最新のブログ（Journal）」セクションを削除し、ご挨拶の直後に「Instagram / 工房からの便り・最新の営業日」セクションを配置。
   - `npm run build` (521 pages) および `node scripts/verify-urls.mjs` (1571/1571 pass) を全件通過確認。
 - **Changed Files**:
-  - `src/data/instagram.json`
-  - `public/admin/config.yml`
-  - `src/components/embed/InstagramGrid.astro`
+  - `src/components/content/Hero.astro`
+  - `src/pages/index.astro`
 - **CLI Calls**: なし（自前処理）
 - **Cost**: Claude=0 / Codex=0 / Gemini自前=1
-- **Findings / Issues**: 画像のアップロード作業が不要になり、Instagram の URL をコピー＆ペーストするだけで即座に公式プレビューカードが表示される運用性の高いシステムへ進化。
+- **Findings / Issues**: 過去のブログ記事（431件）やSEO評価・検索機能は維持したまま、トップページが常に新鮮で最新の営業状況がダイレクトに伝わる構成へ最適化完了。
 - **Next**: ユーザーへの完了報告
+
 
 
 
