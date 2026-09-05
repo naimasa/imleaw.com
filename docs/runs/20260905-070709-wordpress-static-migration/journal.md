@@ -73,24 +73,28 @@
 - **Findings / Issues**: Claude Code のセッション上限到達に伴い、Codex CLI および Antigravity による自前監査・修正にフォールバックして全テストを完走（`local-only` 規約遵守）
 - **Next**: @devops によるローカル起動確認およびデプロイ設定検証
 
-## [2026-09-05 09:42:00] @engineer — 主要固定ページ（レッスン関連・プロフィール）のデザイン・文面リニューアル
+## [2026-09-05 09:53:00] @engineer — 外国人観光客向け英語ベーカリーガイド（/en/）と言語切替機能の実装
 - **Status**: ✅ Done
-- **Input**: ユーザーからの要望（`/about-the-lesson/`, `/basic-course/`, `/advanced-course/`, `/高加水パンコース/`, `/who-am-i/` の魅力的デザイン・文面への刷新）
+- **Input**: ユーザーからの「外国人観光客・在住者向けに、ハードパンを扱う店舗販売を英語で案内するページを用意したい」との要望
 - **Actions**:
-  - `src/styles/typography.css`: リード文、特徴ハイライトボックス、カリキュラムテーブル、コースナビゲーションカード、CTAボックス等のリッチなタイポグラフィ・レイアウトユーティリティを追加。
-  - `src/content/pages/page-99.md` (`/about-the-lesson/`): パン教室の想い・3つのこだわり・ステップ別コース案内・復習割制度の解説・詳細テーブル・予約CTAを構造化。
-  - `src/content/pages/page-441.md` (`/basic-course/`): 初心者向け基礎4回のカリキュラム・学べるポイント・復習用お持ち帰り生地・受講案内を魅力的に刷新。
-  - `src/content/pages/page-452.md` (`/advanced-course/`): 中級6回のバリエーション（ベーグル・食パン・シナモンロール・カンパーニュ等）と受講案内を整理。
-  - `src/content/pages/page-462.md` (`/高加水パンコース/`): 本格ハードパン・高加水長時間発酵の奥深さ、3回コースのカリキュラムを体系化。
-  - `src/content/pages/page-385.md` (`/who-am-i/`): 内藤千晶さんのプロフィール・アルーチパン教室での学び・須坂移住と工房オープンの想い・工房案内を温かみある文面で構成。
-  - `npm run build` (520 pages) および `node scripts/verify-urls.mjs` (1571/1571 pass) を通過確認。
+  - `src/pages/en/index.astro`: 英語ランディングページを新設。
+    - コンセプト（Artisan Bakery, 100% Japanese local wheat, Slow overnight fermentation）
+    - 代表的なハードパン・食事パン（Sourdough Campagne, Baguette, Focaccia, Brioche）の写真付き英語紹介
+    - 営業日確認ガイド（Instagram @im_leaw_suzaka での最新カレンダー確認方法）
+    - アクセス・店舗情報（住所、Google Maps、長野駅〜須坂駅の電車アクセス、小布施・スノーモンキー観光ルートとの近接性、テイクアウト専門店、決済方法）
+    - パン教室は日本語のみ対応である旨の注意書き（*Bread making workshops are held in Japanese only*）
+  - `src/components/layout/Nav.astro`: ナビゲーションメニューに `EN (English)` / `JA (日本語)` のバイリンガル切り替えバッジを追加。
+  - `src/components/layout/Footer.astro`: フッターに `English (Bakery Guide)` リンクを追加。
+  - `npm run build` (521 pages) および `node scripts/verify-urls.mjs` (1571/1571 pass) を通過確認。
 - **Changed Files**:
-  - `src/styles/typography.css`
-  - `src/content/pages/page-99.md`, `page-441.md`, `page-452.md`, `page-462.md`, `page-385.md`
+  - `src/pages/en/index.astro`
+  - `src/components/layout/Nav.astro`
+  - `src/components/layout/Footer.astro`
 - **CLI Calls**: なし（自前処理）
 - **Cost**: Claude=0 / Codex=0 / Gemini自前=1
-- **Findings / Issues**: プレーンなテキストから、工房の温かさと魅力が伝わる雑誌ライクなレイアウトへ大幅刷新。
+- **Findings / Issues**: 英語でのパン教室対応負担を生じさせることなく、パン店舗販売へのインバウンド集客に特化した高効率な英語導線を構築。
 - **Next**: ユーザーへの完了報告
+
 
 
 

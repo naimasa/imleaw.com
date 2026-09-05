@@ -5,10 +5,16 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="container footer-grid">
     <div><p class="footer-brand">{siteConfig.title}</p><p>{siteConfig.subtitle}</p><address>{siteConfig.store.address}</address></div>
-    <nav aria-label="フッターナビゲーション"><ul>{siteConfig.nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav>
+    <nav aria-label="フッターナビゲーション">
+      <ul>
+        {siteConfig.nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        <li><a href="/en/" style="font-weight: 700;">English (Bakery Guide)</a></li>
+      </ul>
+    </nav>
     <div class="social"><a href={`mailto:${siteConfig.store.email}`}>Email</a><a href={siteConfig.store.lineUrl} target="_blank" rel="noopener">LINE<span class="visually-hidden">（新しいタブ）</span></a><a href={siteConfig.store.instagramUrl} target="_blank" rel="noopener">Instagram<span class="visually-hidden">（新しいタブ）</span></a></div>
   </div>
   <p class="copyright">© {year} {siteConfig.title}</p>
+
 </footer>
 <style>
   .footer{padding:var(--space-9) 0 var(--space-5);background:var(--color-text);color:var(--color-bg)}.footer-grid{display:grid;gap:var(--space-7)}.footer a{color:var(--color-bg)}.footer-brand{margin-bottom:var(--space-2);font-family:var(--font-display);font-size:var(--font-size-lg);font-weight:700}.footer p,.footer address{color:var(--color-footer-muted);font-style:normal}.footer ul{margin:0;padding:0;columns:2;list-style:none}.footer li{margin-bottom:var(--space-2)}.social{display:flex;flex-wrap:wrap;gap:var(--space-4)}.copyright{margin:var(--space-7) auto 0;text-align:center;font-size:var(--font-size-xs)}@media(min-width:48rem){.footer-grid{grid-template-columns:2fr 2fr 1fr}}

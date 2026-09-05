@@ -1,0 +1,263 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteConfig } from '../../config/site.config';
+
+const breads = [
+  {
+    title: 'Sourdough Campagne',
+    japanese: '田舎風カンパーニュ',
+    desc: 'Naturally leavened with local Japanese wheat and rye. Deep aroma, crunchy crust, and a moist, flavorful crumb.',
+    image: '/wp-content/uploads/2024/09/IMG_1527-scaled.jpg',
+  },
+  {
+    title: 'Traditional Baguette & Parisian',
+    japanese: 'パリジャン・バゲット',
+    desc: 'Crafted with long cold fermentation to develop natural sweetness and an airy, irregular interior.',
+    image: '/wp-content/uploads/2024/07/IMG_1422-scaled.jpg',
+  },
+  {
+    title: 'High-Hydration Focaccia',
+    japanese: '高加水フォカッチャ',
+    desc: 'Juicy, soft, and fragrant with extra virgin olive oil, local herbs, and seasonal toppings.',
+    image: '/wp-content/uploads/2024/06/IMG_1323-scaled.jpg',
+  },
+  {
+    title: 'Brioche & Sweet Breads',
+    japanese: 'ブリオッシュ・菓子パン',
+    desc: 'Rich with fermented butter, raisins, orange peels, and delicate Japanese craftsmanship.',
+    image: '/wp-content/uploads/2024/05/IMG_1263-scaled.jpg',
+  },
+];
+---
+<BaseLayout
+  title="Artisan Bakery in Suzaka, Nagano | Im Leaw"
+  description="Im Leaw is a small artisan bakery in historic Suzaka, Nagano. We bake authentic sourdough, crusty baguettes, and slow-fermented breads using local Japanese wheat."
+>
+  <!-- Hero Section -->
+  <section class="en-hero">
+    <img src="/wp-content/uploads/2024/09/IMG_1527-scaled.jpg" alt="Artisan breads at Im Leaw Bakery" width="1920" height="1440" fetchpriority="high" />
+    <div class="overlay">
+      <p class="eyebrow">Artisan Bakery in Suzaka, Nagano</p>
+      <h1>
+        <span class="hero-line">Crafted with Time,</span><br />
+        <span class="hero-line">Local Wheat & Passion.</span>
+      </h1>
+      <p>
+        Welcome to Im Leaw. A cozy bakery nestled in the historic merchant town of Suzaka, baking wholesome sourdough and crusty hard breads with long, gentle fermentation.
+      </p>
+      <div class="cluster">
+        <a class="button" href="#location">Visit & Location</a>
+        <a class="button button--secondary" href={siteConfig.store.instagramUrl} target="_blank" rel="noopener noreferrer">Check Latest Schedule on Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy Section -->
+  <section class="section">
+    <div class="container container--narrow intro-text">
+      <p class="eyebrow">Our Philosophy</p>
+      <h2>Baking Authentic Bread for Everyday Tables</h2>
+      <p class="lead">
+        We believe that good bread requires patience. By letting our dough rest and ferment slowly overnight, we unlock the natural sweetness and deep character of Japanese-grown grains without relying on artificial additives.
+      </p>
+    </div>
+
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-card surface">
+          <span class="feature-num">01</span>
+          <h3>100% Japanese Wheat</h3>
+          <p>We source premium domestic wheat from dedicated Japanese farmers, celebrating the unique aroma, chewiness, and gentle sweetness of local grains.</p>
+        </div>
+        <div class="feature-card surface">
+          <span class="feature-num">02</span>
+          <h3>Slow Overnight Fermentation</h3>
+          <p>Long cold fermentation creates complex flavors, crisp crusts, and digestible bread that stays moist and delicious for days.</p>
+        </div>
+        <div class="feature-card surface">
+          <span class="feature-num">03</span>
+          <h3>Wholesome & Pure</h3>
+          <p>Simple, natural ingredients — flour, water, sea salt, and wild yeasts. No chemical preservatives, dough conditioners, or artificial flavors.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signature Breads Grid -->
+  <section class="section section--warm">
+    <div class="container">
+      <header class="section-title">
+        <p class="eyebrow">Breads & Pastries</p>
+        <h2>Signature Lineup</h2>
+        <p class="section-subtitle">A selection of what we bake fresh in our studio oven</p>
+      </header>
+
+      <div class="bread-grid">
+        {breads.map((bread) => (
+          <article class="bread-card surface">
+            <div class="bread-image">
+              <img src={bread.image} alt={bread.title} width="640" height="480" loading="lazy" />
+            </div>
+            <div class="bread-body">
+              <p class="bread-jp">{bread.japanese}</p>
+              <h3>{bread.title}</h3>
+              <p>{bread.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Opening Schedule & Instagram -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="schedule-box surface">
+        <p class="eyebrow">Opening Hours & Schedule</p>
+        <h2>How to Check Our Open Days</h2>
+        <p>
+          As a small artisanal studio, our baking and sales days vary each month. We post our <strong>monthly opening calendar and daily lineup</strong> on our official Instagram account.
+        </p>
+        <p class="note">
+          Doors open at <strong>10:00 AM</strong> on sales days until sold out. We recommend arriving early for the best selection of crusty loaves!
+        </p>
+        <div class="actions">
+          <a class="button" href={siteConfig.store.instagramUrl} target="_blank" rel="noopener noreferrer">
+            Follow @im_leaw_suzaka on Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & Access -->
+  <section id="location" class="section section--warm">
+    <div class="container container--narrow">
+      <header class="section-title">
+        <p class="eyebrow">Find Us</p>
+        <h2>Location & Visitor Info</h2>
+      </header>
+
+      <div class="info-card surface">
+        <table class="info-table">
+          <tbody>
+            <tr>
+              <th>Bakery Name</th>
+              <td><strong>Im Leaw</strong> (小さなパン工房 イム・レーオ)</td>
+            </tr>
+            <tr>
+              <th>Address</th>
+              <td>
+                193-1 Kaminakacho, Suzaka, Nagano 382-0083 Japan<br />
+                <small class="jp-address">長野県須坂市上中町193-1 牧半みぎ</small>
+              </td>
+            </tr>
+            <tr>
+              <th>How to Get Here</th>
+              <td>
+                <ul>
+                  <li><strong>By Train from Nagano Station:</strong> Take the Nagano Dentetsu Line (approx. 25 min) to <strong>Suzaka Station</strong>. It is a pleasant 12-minute walk through the historic town or a quick 3-minute taxi ride.</li>
+                  <li><strong>Sightseeing Route:</strong> Suzaka is conveniently located along the route to <strong>Obuse</strong> (historic chestnut & art town) and <strong>Jigokudani Snow Monkey Park / Shiga Kogen</strong>. A great stop on your day trip!</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Type of Service</th>
+              <td>Takeout only (no dine-in seats)</td>
+            </tr>
+            <tr>
+              <th>Payment</th>
+              <td>Cash, PayPay, and major QR code payments accepted</td>
+            </tr>
+            <tr>
+              <th>Workshops</th>
+              <td>
+                <span class="badge-notice">Note</span> Bread making classes are currently conducted in <strong>Japanese only</strong>.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="map-wrapper">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6401.628752385421!2d138.31149017575876!3d36.65491597587593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601d8f001b157413%3A0xa9527421ed5efca!2z6aCI5Z2C44Gu5bCP44GV44Gq44OR44Oz5bel5oi_IOOCpOODoOODu-ODrOODvOOCqg!5e0!3m2!1sen!2sjp!4v1763268809468!5m2!1sen!2sjp"
+            width="600"
+            height="400"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Google Map of Im Leaw Bakery in Suzaka"
+          ></iframe>
+        </div>
+
+        <div class="actions" style="margin-top: var(--space-6); text-align: center;">
+          <a class="button button--secondary" href="https://maps.google.com/?q=長野県須坂市上中町193-1" target="_blank" rel="noopener noreferrer">
+            Open in Google Maps ↗
+          </a>
+          <a class="button button--secondary" href={`mailto:${siteConfig.store.email}?subject=Inquiry from International Visitor`}>
+            Email Inquiry
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.en-hero{position:relative;display:grid;min-height:clamp(34rem,72vh,48rem);overflow:hidden;background:var(--color-surface-warm)}
+.en-hero>img{position:absolute;width:100%;height:100%;object-fit:cover}
+.en-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--color-hero-overlay-strong) 0%,var(--color-hero-overlay) 45%,var(--color-hero-shade) 80%)}
+.overlay{z-index:1;align-self:center;width:min(calc(100% - 2 * var(--space-5)),var(--container));margin-inline:auto}
+.overlay h1{margin:var(--space-3) 0 var(--space-5);font-size:var(--font-size-3xl);line-height:1.2}
+.hero-line{display:inline-block;white-space:nowrap}
+.overlay>p:not(.eyebrow){max-width:34rem;margin-bottom:var(--space-6);font-size:var(--font-size-md);line-height:1.7}
+
+.intro-text{text-align:center;margin-bottom:var(--space-8)}
+.intro-text h2{font-size:var(--font-size-2xl);margin:var(--space-2) 0 var(--space-4)}
+.section-subtitle{color:var(--color-text-muted);font-size:var(--font-size-md)}
+.section--warm{background:var(--color-surface-warm)}
+
+.features-grid{display:grid;gap:var(--space-6)}
+.feature-card{padding:var(--space-7);position:relative}
+.feature-num{font-family:var(--font-display);font-size:var(--font-size-xl);font-weight:700;color:var(--color-accent);display:block;margin-bottom:var(--space-2)}
+.feature-card h3{margin-bottom:var(--space-3);font-size:var(--font-size-lg)}
+.feature-card p{margin:0;color:var(--color-text-muted);line-height:1.6}
+
+.bread-grid{display:grid;gap:var(--space-6)}
+.bread-card{overflow:hidden;display:flex;flex-direction:column}
+.bread-image{aspect-ratio:4/3;overflow:hidden;background:var(--color-surface-warm)}
+.bread-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.35s ease}
+.bread-card:hover .bread-image img{transform:scale(1.03)}
+.bread-body{padding:var(--space-6);display:flex;flex-direction:column;flex-grow:1}
+.bread-jp{font-size:var(--font-size-xs);font-weight:700;color:var(--color-accent);margin-bottom:var(--space-1);text-transform:uppercase}
+.bread-body h3{margin-bottom:var(--space-3);font-size:var(--font-size-lg)}
+.bread-body p{margin:0;color:var(--color-text-muted);font-size:var(--font-size-sm);line-height:1.6}
+
+.schedule-box{padding:var(--space-8) var(--space-6);text-align:center;border:2px solid var(--color-border)}
+.schedule-box h2{font-size:var(--font-size-2xl);margin:var(--space-2) 0 var(--space-4)}
+.schedule-box p{max-width:34rem;margin:0 auto var(--space-4);line-height:1.7}
+.schedule-box .note{background:var(--color-surface-warm);padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);display:inline-block;font-size:var(--font-size-sm);color:var(--color-text)}
+.schedule-box .actions{margin-top:var(--space-6)}
+
+.info-card{padding:var(--space-7)}
+.info-table{width:100%;border-collapse:collapse}
+.info-table th,.info-table td{padding:var(--space-4);border-bottom:1px solid var(--color-border);text-align:left;vertical-align:top}
+.info-table th{width:30%;color:var(--color-accent);font-weight:700;font-size:var(--font-size-sm)}
+.info-table td{line-height:1.6}
+.info-table ul{margin:0;padding-left:1.2rem}
+.info-table li+li{margin-top:var(--space-2)}
+.jp-address{display:block;color:var(--color-text-muted);margin-top:var(--space-1)}
+.badge-notice{display:inline-block;padding:0.1rem 0.4rem;background:var(--color-accent);color:var(--color-white);border-radius:var(--radius-sm);font-size:var(--font-size-xs);font-weight:700;margin-right:var(--space-1)}
+.map-wrapper{margin-top:var(--space-6);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm)}
+.map-wrapper iframe{width:100%;height:380px;border:0;display:block}
+
+@media(min-width:48rem){
+  .features-grid{grid-template-columns:repeat(3,1fr)}
+  .bread-grid{grid-template-columns:repeat(2,1fr)}
+  .overlay{width:min(calc(100% - 2 * var(--space-8)),var(--container))}
+}
+@media(min-width:64rem){
+  .bread-grid{grid-template-columns:repeat(4,1fr)}
+}
+</style>
