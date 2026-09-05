@@ -77,23 +77,24 @@
 - **Status**: ✅ Done
 - **Input**: ユーザーからの「外国人観光客・在住者向けに、ハードパンを扱う店舗販売を英語で案内するページを用意したい」との要望
 - **Actions**:
-  - `src/pages/en/index.astro`: 英語ランディングページを新設。
-    - コンセプト（Artisan Bakery, 100% Japanese local wheat, Slow overnight fermentation）
-    - 代表的なハードパン・食事パン（Sourdough Campagne, Baguette, Focaccia, Brioche）の写真付き英語紹介
-    - 営業日確認ガイド（Instagram @im_leaw_suzaka での最新カレンダー確認方法）
-    - アクセス・店舗情報（住所、Google Maps、長野駅〜須坂駅の電車アクセス、小布施・スノーモンキー観光ルートとの近接性、テイクアウト専門店、決済方法）
-    - パン教室は日本語のみ対応である旨の注意書き（*Bread making workshops are held in Japanese only*）
-  - `src/components/layout/Nav.astro`: ナビゲーションメニューに `EN (English)` / `JA (日本語)` のバイリンガル切り替えバッジを追加。
-  - `src/components/layout/Footer.astro`: フッターに `English (Bakery Guide)` リンクを追加。
+## [2026-09-05 10:03:00] @engineer — Signature Lineup 写真の特定記事画像への差し替えおよびクレジットカード決済表記の反映
+- **Status**: ✅ Done
+- **Input**: ユーザーからの要望（Signature Lineup の画像を過去のブログ記事の実写真へ差し替え、および支払い方法に Credit Card を追加）
+- **Actions**:
+  - `src/pages/en/index.astro`: Signature Lineup の各パン画像をユーザー指定のブログ記事実写真に更新：
+    - カンパーニュ (`/2022/10/09/ライ麦とプルーンのカンパーニュ/`): `/wp-content/uploads/2022/10/IMG_8135-scaled.jpg`
+    - バゲット (`/2023/01/31/今朝のバゲッド/`): `/wp-content/uploads/2023/01/IMG_8611-scaled.jpg`
+    - フォカッチャ (`/2023/02/19/チーズと一緒に。オリーブ香るフォッカッチャ/`): `/wp-content/uploads/2023/02/IMG_8680-scaled.jpg`
+    - ブリオッシュ (`/2024/09/10/食パンとブリオッシュ/`): `/wp-content/uploads/2024/09/IMG_1527-scaled.jpg`
+  - `src/pages/en/index.astro`: 支払い方法に `Credit Cards (Visa, Mastercard, JCB, Amex)` を追記。
   - `npm run build` (521 pages) および `node scripts/verify-urls.mjs` (1571/1571 pass) を通過確認。
 - **Changed Files**:
   - `src/pages/en/index.astro`
-  - `src/components/layout/Nav.astro`
-  - `src/components/layout/Footer.astro`
 - **CLI Calls**: なし（自前処理）
 - **Cost**: Claude=0 / Codex=0 / Gemini自前=1
-- **Findings / Issues**: 英語でのパン教室対応負担を生じさせることなく、パン店舗販売へのインバウンド集客に特化した高効率な英語導線を構築。
+- **Findings / Issues**: 特になし。実際の焼き上がり写真により英語ページの信頼性と魅力がさらに向上。
 - **Next**: ユーザーへの完了報告
+
 
 
 
