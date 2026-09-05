@@ -77,23 +77,23 @@
 - **Status**: ✅ Done
 - **Input**: ユーザーからの「外国人観光客・在住者向けに、ハードパンを扱う店舗販売を英語で案内するページを用意したい」との要望
 - **Actions**:
-## [2026-09-05 10:03:00] @engineer — Signature Lineup 写真の特定記事画像への差し替えおよびクレジットカード決済表記の反映
+## [2026-09-05 10:08:00] @engineer — Instagram 投稿URL直接指定による公式埋め込みカード表示機能の実装
 - **Status**: ✅ Done
-- **Input**: ユーザーからの要望（Signature Lineup の画像を過去のブログ記事の実写真へ差し替え、および支払い方法に Credit Card を追加）
+- **Input**: ユーザーからの「画像選択ではなく Instagram 投稿の個別リンク（URL）を直接入力して表示させたい」との要望
 - **Actions**:
-  - `src/pages/en/index.astro`: Signature Lineup の各パン画像をユーザー指定のブログ記事実写真に更新：
-    - カンパーニュ (`/2022/10/09/ライ麦とプルーンのカンパーニュ/`): `/wp-content/uploads/2022/10/IMG_8135-scaled.jpg`
-    - バゲット (`/2023/01/31/今朝のバゲッド/`): `/wp-content/uploads/2023/01/IMG_8611-scaled.jpg`
-    - フォカッチャ (`/2023/02/19/チーズと一緒に。オリーブ香るフォッカッチャ/`): `/wp-content/uploads/2023/02/IMG_8680-scaled.jpg`
-    - ブリオッシュ (`/2024/09/10/食パンとブリオッシュ/`): `/wp-content/uploads/2024/09/IMG_1527-scaled.jpg`
-  - `src/pages/en/index.astro`: 支払い方法に `Credit Cards (Visa, Mastercard, JCB, Amex)` を追記。
-  - `npm run build` (521 pages) および `node scripts/verify-urls.mjs` (1571/1571 pass) を通過確認。
+  - `src/data/instagram.json`: 投稿 URL（`url`）と管理用メモ（`title`）を管理するデータ構造にアップデート。
+  - `public/admin/config.yml`: Decap CMS の「サイト設定 > Instagram 表示投稿設定」を更新し、Instagram 投稿 URL を直接入力・並び替えできるフォームに改善。
+  - `src/components/embed/InstagramGrid.astro`: Instagram 公式の埋め込みスクリプト（`//www.instagram.com/embed.js`）および `blockquote.instagram-media` カード形式を採用。写真・複数枚スライド・リール動画・キャプションがそのまま美麗に表示されるレスポンシブグリッドを構築。
+  - `npm run build` (521 pages) および `node scripts/verify-urls.mjs` (1571/1571 pass) を全件通過確認。
 - **Changed Files**:
-  - `src/pages/en/index.astro`
+  - `src/data/instagram.json`
+  - `public/admin/config.yml`
+  - `src/components/embed/InstagramGrid.astro`
 - **CLI Calls**: なし（自前処理）
 - **Cost**: Claude=0 / Codex=0 / Gemini自前=1
-- **Findings / Issues**: 特になし。実際の焼き上がり写真により英語ページの信頼性と魅力がさらに向上。
+- **Findings / Issues**: 画像のアップロード作業が不要になり、Instagram の URL をコピー＆ペーストするだけで即座に公式プレビューカードが表示される運用性の高いシステムへ進化。
 - **Next**: ユーザーへの完了報告
+
 
 
 

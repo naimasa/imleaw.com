@@ -64,16 +64,23 @@ collections:
     label: サイト設定
     files:
       - name: instagram
-        label: Instagram ピン留め写真
+        label: Instagram 表示投稿設定
         file: src/data/instagram.json
         format: json
         fields:
-          - label: ピン留め写真一覧
-            name: pins
+          - label: 表示するInstagram投稿一覧
+            name: posts
             widget: list
-            summary: "{{fields.caption}} ({{fields.image}})"
+            summary: "{{fields.title}} ({{fields.url}})"
             fields:
-              - { label: 写真, name: image, widget: image }
-              - { label: Instagram投稿URL（未入力時は公式プロフィール）, name: url, widget: string, required: false, default: "https://www.instagram.com/im_leaw_suzaka/" }
-              - { label: キャプション / 写真の説明, name: caption, widget: string, required: false, default: "" }
+              - label: Instagram投稿URL
+                name: url
+                widget: string
+                hint: "Instagramの投稿URLを入力してください（例: https://www.instagram.com/p/DcxMB5nCfdN/）"
+              - label: メモ・タイトル（管理用/任意）
+                name: title
+                widget: string
+                required: false
+                default: ""
+
 
