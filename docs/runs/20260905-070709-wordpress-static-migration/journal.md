@@ -73,23 +73,25 @@
 - **Findings / Issues**: Claude Code のセッション上限到達に伴い、Codex CLI および Antigravity による自前監査・修正にフォールバックして全テストを完走（`local-only` 規約遵守）
 - **Next**: @devops によるローカル起動確認およびデプロイ設定検証
 
-## [2026-09-05 09:37:00] @engineer — コース内部リンク更新とヘッダー Courses 削除対応
+## [2026-09-05 09:42:00] @engineer — 主要固定ページ（レッスン関連・プロフィール）のデザイン・文面リニューアル
 - **Status**: ✅ Done
-- **Input**: ユーザーからの不具合指摘（`/about-the-lesson/` 内の各コース内部リンク未更新、ヘッダーの Courses リンク削除要望）
+- **Input**: ユーザーからの要望（`/about-the-lesson/`, `/basic-course/`, `/advanced-course/`, `/高加水パンコース/`, `/who-am-i/` の魅力的デザイン・文面への刷新）
 - **Actions**:
-  - `src/config/site.config.ts`: ナビゲーション配列から `Courses` リンクを削除（ヘッダーおよびフッターナビを適正化）。
-  - `src/content/pages/page-99.md`: `About the lesson` ページ内の各コースリンクを完全な内部ルート（`/basic-course/`, `/advanced-course/`, `/%e9%ab%98%e5%8a%a0%e6%b0%b4%e3%83%91%e3%83%b3%e3%82%b3%e3%83%bc%e3%82%b9/`）に更新。
-  - `src/content/pages/page-441.md`, `page-452.md`, `page-462.md`, `page-1967.md`, `page-120.md`: 古い画像派生パス（`-1024x768.jpg`等）を実在する `-scaled.jpg` または正規画像パスに更新し 404 を解消。
-  - `src/pages/admin/index.astro`: Decap CMS の明示的なルーティングファイルを追加。
-  - `npm run build` (520 pages) および `node scripts/verify-urls.mjs` (1571/1571 pass) を全件通過確認。
+  - `src/styles/typography.css`: リード文、特徴ハイライトボックス、カリキュラムテーブル、コースナビゲーションカード、CTAボックス等のリッチなタイポグラフィ・レイアウトユーティリティを追加。
+  - `src/content/pages/page-99.md` (`/about-the-lesson/`): パン教室の想い・3つのこだわり・ステップ別コース案内・復習割制度の解説・詳細テーブル・予約CTAを構造化。
+  - `src/content/pages/page-441.md` (`/basic-course/`): 初心者向け基礎4回のカリキュラム・学べるポイント・復習用お持ち帰り生地・受講案内を魅力的に刷新。
+  - `src/content/pages/page-452.md` (`/advanced-course/`): 中級6回のバリエーション（ベーグル・食パン・シナモンロール・カンパーニュ等）と受講案内を整理。
+  - `src/content/pages/page-462.md` (`/高加水パンコース/`): 本格ハードパン・高加水長時間発酵の奥深さ、3回コースのカリキュラムを体系化。
+  - `src/content/pages/page-385.md` (`/who-am-i/`): 内藤千晶さんのプロフィール・アルーチパン教室での学び・須坂移住と工房オープンの想い・工房案内を温かみある文面で構成。
+  - `npm run build` (520 pages) および `node scripts/verify-urls.mjs` (1571/1571 pass) を通過確認。
 - **Changed Files**:
-  - `src/config/site.config.ts`
-  - `src/content/pages/page-99.md`, `page-441.md`, `page-452.md`, `page-462.md`, `page-1967.md`, `page-120.md`
-  - `src/pages/admin/index.astro`
+  - `src/styles/typography.css`
+  - `src/content/pages/page-99.md`, `page-441.md`, `page-452.md`, `page-462.md`, `page-385.md`
 - **CLI Calls**: なし（自前処理）
 - **Cost**: Claude=0 / Codex=0 / Gemini自前=1
-- **Findings / Issues**: 特になし。サイト全体のリンク切れ・404 を網羅的に解消。
+- **Findings / Issues**: プレーンなテキストから、工房の温かさと魅力が伝わる雑誌ライクなレイアウトへ大幅刷新。
 - **Next**: ユーザーへの完了報告
+
 
 
 
