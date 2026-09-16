@@ -19,6 +19,13 @@ const socialImage = image ? new URL(image, siteConfig.url) : new URL('/wp-conten
     <meta property="og:type" content={ogType} /><meta property="og:locale" content="ja_JP" /><meta property="og:site_name" content={siteConfig.title} /><meta property="og:title" content={pageTitle} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /><meta property="og:image" content={socialImage} /><meta property="og:image:alt" content={imageAlt ?? `${siteConfig.title}のパン工房`} />
     <meta name="twitter:card" content="summary_large_image" /><link rel="icon" href="/wp-content/uploads/2025/11/cropped-cropped-334829534_6237651976295699_2888772222319920661_n-1.jpg" />
     <link rel="alternate" type="application/rss+xml" title={siteConfig.title} href="/feed/" />
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-JE15G190QX"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-JE15G190QX');
+    </script>
   </head>
   <body><a class="skip-link" href="#main-content">本文へ移動</a><Header /><Breadcrumb items={breadcrumbs} /><main id="main-content"><slot /></main><Footer /></body>
 </html>
