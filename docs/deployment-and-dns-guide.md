@@ -135,10 +135,35 @@ DNS 反映後、以下の項目を順番にブラウザでテストします：
 
 ## Step 5: Decap CMS（管理画面）の利用方法
 
-静的サイト公開後、ブラウザからブログ記事や Instagram 埋め込みリンクの更新を行う場合：
+Decap CMS の GitHub ログインは、本サイトが Netlify ではなく Cloudflare Pages 上で動いているため、
+Netlify の OAuth（`api.netlify.com/auth`）をそのまま使うことができません（`site_id` に一致する
+Netlify サイトが存在せず `Not Found` になります）。代わりに `functions/api/auth.js` /
+`functions/api/callback.js`（Cloudflare Pages Functions）が GitHub OAuth の仲介を行います。
+`public/admin/config.yml` の `backend.base_url` / `backend.auth_endpoint` がこのエンドポイントを
+指すよう設定済みです。利用前に以下の初期設定が必要です。
+
+### 5-1. GitHub OAuth App の作成
+
+1. GitHub の [Developer settings > OAuth Apps](https://github.com/settings/developers) で「New OAuth App」を作成します。
+2. **Homepage URL**: `https://imleaw.com`
+3. **Authorization callback URL**: `https://imleaw.com/api/callback`
+4. 作成後に発行される **Client ID** と **Client Secret** を控えます（Secret は再表示できないため必ず保存）。
+
+### 5-2. Cloudflare Pages に環境変数（Secret）を設定
+
+Cloudflare Pages プロジェクトの **設定 > 環境変数** に、**本番環境**用として以下を追加します（値は「暗号化」で保存）：
+
+| 変数名 | 値 |
+| :--- | :--- |
+| `GITHUB_OAUTH_CLIENT_ID` | 5-1 で取得した Client ID |
+| `GITHUB_OAUTH_CLIENT_SECRET` | 5-1 で取得した Client Secret |
+
+設定後、Pages を再デプロイ（または次回コミットで自動デプロイ）すると反映されます。
+
+### 5-3. ログインして利用する
 
 1. `https://imleaw.com/admin/` にアクセスします。
-2. GitHub アカウントでログインします。
+2. 「Login with GitHub」を押すと GitHub の認可画面が開き、認可すると管理画面に入れます。
 3. 記事の新規作成・編集や、Instagram ポスト URL の追加・並び替えを行い「Publish」すると、GitHub へコミットされ、Cloudflare Pages が自動で数分以内に再ビルド・公開します。
 
 ---
